@@ -109,7 +109,7 @@ From the SpringToolSuit you can run the relevant test with the option "Run as 1 
 _Certain unit tests were made for the methods on the [DAO] package of the project with the objective of checking if this methods are working as intended and are related to the conditions provided_
 
 
-## Deployement
+## Deployment
 
 _Coming soong (maybe?)_
 
