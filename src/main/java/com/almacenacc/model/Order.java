@@ -85,5 +85,4 @@ public class Order {
 		price=priceProducts;
 		return price;
 	}
-
 }
