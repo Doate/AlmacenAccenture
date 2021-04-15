@@ -1,6 +1,6 @@
 # Almacen Accenture
 
-_Initial proyect based on the managament of orders of the clients of certain store and how this interactions given certain conditions_
+_Initial proyect based on the managament of orders of the clients of certain store and how this interactions changes given certain conditions_
 
 ## Starting
 
