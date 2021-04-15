@@ -78,11 +78,11 @@ public class Order {
 	
 	public Double calculatePrice(List<Product> products)
 	{
-		double precioProductos=0;
+		double priceProducts=0;
 		for (Product product : products) {
-			precioProductos+=product.getPrice();
+			priceProducts+=product.getPrice();
 		}
-		price=precioProductos;
+		price=priceProducts;
 		return price;
 	}
 
