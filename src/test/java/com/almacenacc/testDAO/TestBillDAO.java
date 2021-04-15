@@ -28,7 +28,7 @@ public class TestBillDAO extends TestCase {
 	}
 	
 	public void testgetBillbyId() {
-		root();
+		root();  
 		assertNotNull("Facutra no existe", billDAOTest.getBillbyId(1));
 	}
 	
