@@ -16,5 +16,5 @@ public class TestOrderDAO extends TestCase {
 	private OrderDAO orderDAOTest;
 	private BillDAO billDAOTest;
 	private ProductDAO productDAOTest;
-	private static Integer orderCounter=3;
+	
 }

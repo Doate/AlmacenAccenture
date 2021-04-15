@@ -22,14 +22,14 @@ public class ClientService {
 	private ClientDAO clientService;
 	
 
-	@GetMapping("/clientes")
+	@GetMapping("/clients")
 	public List<Client> getAllClients()
 	{
 		return clientService.findAll();
 	}
 	
 
-	@GetMapping("clientes/{id}")
+	@GetMapping("clients/{id}")
 	public Client getClientById(@PathVariable int id)
 	{
 		if (clientService.findById(id)==null) {
@@ -40,7 +40,7 @@ public class ClientService {
 	}
 	
 
-	@PostMapping("/clientes")
+	@PostMapping("/clients")
 	public ResponseEntity<Object> addClient(@RequestBody Client client)
 	{
 		clientService.addClient(client);
@@ -50,7 +50,7 @@ public class ClientService {
 	}
 	
 
-	@DeleteMapping("/clientes/{id}")
+	@DeleteMapping("/clients/{id}")
 	public void deleteByClientId(@PathVariable int id)
 	{
 		Client client= clientService.deleteClient(id);

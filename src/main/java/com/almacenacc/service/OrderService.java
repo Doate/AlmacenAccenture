@@ -24,26 +24,26 @@ public class OrderService {
 	private OrderDAO orderService;
 	
 
-	@GetMapping("/pedidos")
+	@GetMapping("/orders")
 	public List<Order> getAllOrders(){
 		return orderService.getAllOrders();
 	}
 	
 
-	@GetMapping("/pedidos/{id}")
+	@GetMapping("/orders/{id}")
 	public Order getOrderById(@PathVariable int id)
 	{
 		return orderService.getOrderById(id);
 	}
 	
 
-	@GetMapping("clientes/{idCliente}/pedidos")
-	public List<Order> getPedidoByCliente(@PathVariable int idClient){
+	@GetMapping("clients/{idClient}/orders")
+	public List<Order> getOrderByClient(@PathVariable int idClient){
 		return orderService.getAllOrdersByClient(idClient);
 	}
 	
 
-	@PostMapping("/clientes/{idCliente}/pedidos")
+	@PostMapping("/clients/{idClient}/orders")
 	public ResponseEntity<Object> createOrder(@PathVariable  int idClient,@RequestBody Order order)
 	{
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -53,23 +53,23 @@ public class OrderService {
 	}
 	
 
-	@PutMapping("/clientes/{idCliente}/pedidos/{idPedido}")
+	@PutMapping("/clients/{idClient}/orders/{idOrder}")
 	public Order updateOrder(@PathVariable int idClient, @PathVariable int idOrder,@RequestBody Order order)
 	{
 		return orderService.updateOrder(idClient, order, idOrder);
 	}
 	
 
-	@PostMapping("/clientes/{idCliente}/pedidos/{idPedido}/addProduct/{idProducto}")
+	@PostMapping("/clients/{idClient}/orders/{idOrder}/addProduct/{Productid}")
 	public Order addProductToOrder(@PathVariable int idClient, @PathVariable int idOrder, @PathVariable int Productid){
 		return orderService.addProductToOrder(idClient, idOrder, Productid);
 	}
 	
 
-	@DeleteMapping("/clientes/{idCliente}/pedidos/{idPedido}")
-	public void deletePedidoByCliente(@PathVariable int idCliente, @PathVariable int idPedido)
+	@DeleteMapping("/clients/{idClient}/orders/{idOrder}")
+	public void deleteOrderByClient(@PathVariable int idClient, @PathVariable int idOrder)
 	{
-		Order order = orderService.deleteOrderById(idCliente, idPedido);
+		Order order = orderService.deleteOrderById(idClient, idOrder);
 		if (order==null) {
 			
 		}

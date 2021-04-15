@@ -15,9 +15,18 @@ import com.almacenacc.model.Product;
 
 @Component
 public class OrderDAO {
+	
+	/**
+	 * Here we define the conditions regarding the time of the order 
+	 * that can change the state of the order 
+	 */
 	public final Integer TWELVEHOURS=43200000;
 	public final Integer FIVEHOURS=18000000;
 	
+	/**
+	 *  Here we define a user counter to maintain the 
+	 *  id's of the array of orders
+	 */
 	private static Integer orderCounter=3;
 	
 	@Autowired
@@ -33,7 +42,11 @@ public class OrderDAO {
 		deleteDeliverycostFromOrdersgeneratedManually();
 	}
 
-	
+	/**
+	 * Method that checks the total price of the order
+	 * and removes the delivery cost
+	 * 
+	 */
 	public static void deleteDeliverycostFromOrdersgeneratedManually(){
 		for (int i = 0; i < orders.size(); i++) {
 			if (orders.get(i).getPrice()>100000) {
@@ -49,10 +62,21 @@ public class OrderDAO {
 		}
 	}
 	
+	
+	/**
+	 * Return the orders that were registered on
+	 * the array
+	 * @return all the orders
+	 */
 	public List<Order> getAllOrders(){
 		return orders;
 	}
 	
+	/**
+	 * Returns all the orders made by a certain client
+	 * @param idClient
+	 * @return list of orders made by the client
+	 */
 	public List<Order> getAllOrdersByClient (int idClient){
 		List<Order> ClientsOrders = new ArrayList<>();
 		for (Order order : orders) {
@@ -62,6 +86,12 @@ public class OrderDAO {
 		}
 		return ClientsOrders;
 	}
+	/**
+	 * adds an order to a client given a certain id
+	 * @param idClient
+	 * @param order
+	 * @return the created order
+	 */
 	
 	public Order addOrderToAClient (int idClient, Order order){
 		if (order.getIdOrder().equals(null)) {
@@ -73,6 +103,12 @@ public class OrderDAO {
 		return order;
 	}
 	
+	
+	/**
+	 * Return an order given a certain id
+	 * @param id
+	 * @return
+	 */
 	public Order getOrderById(int id)
 	{
 		for (Order order : orders) {
@@ -83,6 +119,13 @@ public class OrderDAO {
 		return null;
 	}
 	
+	
+	/**
+	 * Adds a new order to the array and verifies the price
+	 * to determine if the purchase applies for a delivery cost
+	 * @param order
+	 * @return
+	 */
 	public Order addOrder(Order order)
 	{
 		if (order.getIdOrder()==null) {
@@ -104,6 +147,17 @@ public class OrderDAO {
 		return order;
 	}
 	
+	/**
+	 * updates an order of a certain client verifies if it applies
+	 * for a delivery service and verifies if it meets the condition
+	 * "if five hours have not passed" to update the order
+	 * 
+	 * @param idClient
+	 * @param order
+	 * @param idOrder
+	 * @return order with updated data
+	 */
+	
 	public Order updateOrder (int idClient, Order order , int idOrder){
 		
 		Order newOrder = new Order(idOrder, order.getProducts(), idClient, new Date(), order.getstate());
@@ -124,6 +178,13 @@ public class OrderDAO {
 		return null;
 	}
 	
+	/**
+	 * Auxiliary method that verifies if less than five hours 
+	 * had elapsed to determine if the method above updateOrder
+	 * can go on
+	 * @param orderDate
+	 * @return
+	 */
 	public boolean isUpdatedTime(Date orderDate){
 		Date actualDate = new Date();
 		if (actualDate.getTime()- orderDate.getTime()<FIVEHOURS) {
@@ -132,6 +193,16 @@ public class OrderDAO {
 		return false;
 	}
 	
+	
+	/**
+	 * Deletes an order given a client id and
+	 * an order id and checks the condition of twelve hours
+	 * to generate a bill
+	 * 
+	 * @param idClient
+	 * @param idOrder
+	 * @return
+	 */
 	
 	public Order deleteOrderById(int idClient, int idOrder){
 		Iterator<Order> iterator = orders.iterator();
@@ -155,7 +226,12 @@ public class OrderDAO {
 		return null;
 	}
 	
-	
+	/**
+	 * Auxiliary method of the implemented method above to verify
+	 * if twelve hours had elapsed
+	 * @param orderDate
+	 * @return
+	 */
 	public boolean isCancelledTime(Date orderDate)
 	{
 		Date actualDate = new Date();
@@ -164,6 +240,13 @@ public class OrderDAO {
 		}
 		return false;
 	}
+	
+	/**
+	 * Auxiliary method that verifies if an order 
+	 * incurs on delivery fees
+	 * @param order
+	 * @return
+	 */
 	
 	public Order deleteDelivery (Order order)
 	{
@@ -179,6 +262,14 @@ public class OrderDAO {
 		}
 		return order;
 	}
+	
+	/**
+	 * Adds a product to a given order to a certain client
+	 * @param idClient
+	 * @param idOrder
+	 * @param productid
+	 * @return updated order
+	 */
 	
 	public Order addProductToOrder(int idClient, int idOrder, int productid)
 	{

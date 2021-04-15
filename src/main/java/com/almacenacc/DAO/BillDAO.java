@@ -13,6 +13,11 @@ import com.almacenacc.model.Order;
 public class BillDAO {
 	private static int billCounter=3;
 	private static List<Bill> bills = new ArrayList<>();
+	/**
+	 * Here we initialize a static block that can allow us
+	 *  to load a certain amount of bills to interact with the 
+	 *  methods created in the class
+	 */
 	static {
 		bills.add(new Bill (1, new OrderDAO().getOrderById(1)));
 		bills.add(new Bill (2, new OrderDAO().getOrderById(2)));
@@ -20,13 +25,21 @@ public class BillDAO {
 		
 	}
 	
-	
+	/**
+	 * Return all the registered bills that are loaded in the 
+	 * memory
+	 * @return
+	 */
 	public List<Bill> getAllBills()
 	{
 		return bills;
 	}
 	
-	
+	/**
+	 * Return the registered bill given a certain id
+	 * @param id
+	 * @return the bill given a certain id
+	 */
 	
 	public Bill getBillbyId(int id) {
 		for (Bill bill : bills) {
@@ -37,6 +50,11 @@ public class BillDAO {
 		return null;
 	}
 	
+	/**
+	 * Adds a new bill to the list defined before
+	 * @param bill
+	 * @return the new bill added
+	 */
 	
 	
 	public Bill addBill(Bill bill) {
@@ -47,7 +65,12 @@ public class BillDAO {
 		return bill;
 	}
 	
-	
+	/**
+	 * Updates a bill given; generates a new one with the 
+	 * updated data and replaces the previous bill
+	 * @param idOrder
+	 * @param order
+	 */
 	public void updateBill (int idOrder, Order order ){
 		for (int i=0; i<bills.size(); i++) {
 			if (bills.get(i).getOrder().getIdOrder()==idOrder) {
@@ -59,6 +82,11 @@ public class BillDAO {
 		
 	}
 	
+	/**
+	 * Deletes a bill given a certain id
+	 * @param idOrder
+	 * @return
+	 */
 	
 	
 	public Bill deleteBillbyIdOrder(int idOrder) {

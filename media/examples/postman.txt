@@ -1,0 +1,54 @@
+Get all clients
+curl --location --request GET 'localhost:8080/clients/' \
+--data-raw ''
+
+Add a new client
+curl --location --request POST 'localhost:8080/clients' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idClient": 3,
+    "idDocument": "123",
+    "name": "ClienteJoselito",
+    "address": "Carrera 11# 14-108"
+}'
+
+
+Delete a client
+curl --location --request DELETE 'localhost:8080/clients/3' \
+--data-raw ''
+
+
+updating an order from a client
+curl --location --request PUT 'localhost:8080/clients/2/orders/3' \
+--header 'Content-Type: application/json' \
+--data-raw '
+   {
+        "idOrder": 3,
+        "products": [
+            {
+                "productname": "Product1",
+                "price": 75000.0,
+                "productId": 1
+            },
+            {
+                "productname": "Product2",
+                "price": 30000.0,
+                "productId": 2
+            },
+            {
+                "productname": "Product3",
+                "price": 60000.0,
+                "productId": 3
+            },            
+            {
+                "productname": "Product3",
+                "price": 60000.0,
+                "productId": 3
+            }
+
+        ],
+        "idClient": 2,
+        "price": 163000.0,
+        "date": "2021-04-15T04:59:54.414+00:00",
+        "state": "ACCEPTED"
+    }'

@@ -17,17 +17,17 @@ public class BillService {
 	private BillDAO billService;
 	
 
-	@GetMapping("/facturas")
+	@GetMapping("/bills")
 	public List<Bill> getAllBills()
 	{
 		return billService.getAllBills();
 	}
 	
 
-	@GetMapping("/facturas/{idFactura}")
-	public Bill getFacturaById(@PathVariable int idFactura)
+	@GetMapping("/bills/{Billid}")
+	public Bill getBillById(@PathVariable int Billid)
 	{
-		return billService.getBillbyId(idFactura);
+		return billService.getBillbyId(Billid);
 	}
 	
 

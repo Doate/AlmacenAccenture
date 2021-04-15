@@ -22,22 +22,22 @@ public class ProductService {
 	private ProductDAO productService;
 
 
-	@GetMapping("/productos")
+	@GetMapping("/products")
 	public List<Product> getAllProducts()
 	{
 		return productService.findAll();
 	}
 
 
-	@GetMapping("productos/{id}")
+	@GetMapping("products/{id}")
 	public Product getProductById(@PathVariable int id)
 	{
 		return productService.findById(id);
 	}
 
 
-	@PostMapping("/productos")
-	public ResponseEntity<Object> addProducto(@RequestBody Product product)
+	@PostMapping("/products")
+	public ResponseEntity<Object> addProduct(@RequestBody Product product)
 	{
 		productService.addProduct(product);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -46,8 +46,8 @@ public class ProductService {
 	}
 
 
-	@DeleteMapping("/productos/{id}")
-	public void deleteByProductoId(@PathVariable int id)
+	@DeleteMapping("/products/{id}")
+	public void deleteByProductId(@PathVariable int id)
 	{
 		Product product = productService.deleteProductByid(id);
 		if (product.equals(null)) {
