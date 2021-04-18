@@ -217,7 +217,7 @@ public class OrderDAO {
 				else {
 					order.setstate("CANCELLED");
 					double newPrice= order.getPrice();
-					newPrice = (newPrice / 100)*10;
+					newPrice = (newPrice)*0.10;
 					order.setPrice(newPrice);
 					billService.updateBill(idOrder, order);
 				}
