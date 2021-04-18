@@ -51,7 +51,7 @@ public class OrderDAO {
 		for (int i = 0; i < orders.size(); i++) {
 			if (orders.get(i).getPrice()>100000) {
 				Iterator<Product> iterator = orders.get(i).getProducts().iterator();
-				orders.get(i).setPrice(orders.get(i).getPrice()-5000);
+				orders.get(i).setPrice(orders.get(i).getPrice()-3000);
 				while (iterator.hasNext()) {
 					Product product2 = iterator.next();
 					if (product2.getProductId()==0) {
